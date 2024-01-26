@@ -1,0 +1,100 @@
+cursor.execute("SELECT first_name, last_name, salary FROM teachers")
+teachers = cursor.fetchall()
+
+for teacher in teachers:
+    print(teacher)
+
+#code finds distinct schools in the database 
+cursor.execute("SELECT distinct school FROM teachers")
+teachers = cursor.fetchall()
+
+for teacher in teachers:
+    print(teacher)
+#listing the school name and salary from teachers 
+cursor.execute("SELECT school, salary FROM teachers")
+teachers = cursor.fetchall()
+
+for teacher in teachers:
+    print(teacher)
+
+#shows name, last name and salary and then orders by the salary default ASC
+cursor.execute("SELECT first_name, last_name, salary FROM teachers ORDER BY salary")
+teachers = cursor.fetchall()
+
+for teacher in teachers:
+    print(teacher)
+#order by school ASC and by hire date DESC
+cursor.execute("SELECT last_name, school, hire_date FROM teachers ORDER BY school ASC, hire_date DESC")
+teachers = cursor.fetchall()
+for teacher in teachers:
+    print(teacher)
+#shows teachers last name, school using myers middle school as a filter 
+cursor.execute("SELECT last_name, school, hire_date FROM teachers WHERE school = 'Myers Middle School' ")
+teachers = cursor.fetchall()
+for teacher in teachers:
+  print(teacher)
+#filter on teachers using the first name janet 
+cursor. execute("SELECT first_name, school FROM teachers WHERE first_name='Janet'")
+teachers = cursor.fetchall()
+for teacher in teachers:
+  print(teacher)
+#filter using !=(not like)
+cursor.execute("SELECT school FROM teachers WHERE school != 'F.D. Roosevelt HS' ")
+teachers = cursor.fetchall()
+for teacher in teachers:
+  print(teacher)
+#filter on the hire_date for hires before 2001-01-01
+cursor.execute("SELECT first_name, last_name, hire_date FROM teachers WHERE hire_date <'2000-01-01'")
+teachers = cursor.fetchall()
+for teacher in teachers:
+  print(teacher)
+#filter for all teachers earning more than 43500 
+cursor. execute("SELECT first_name, last_name, salary FROM teachers WHERE salary >= 43500")
+teachers = cursor.fetchall()
+for teacher in teachers:
+  print(teacher)
+#filter for salaries in a specific range suing where 40000-65000
+cursor.execute("SELECT first_name, last_name, school, salary FROM teachers WHERE salary BETWEEN 40000 AND 65000")
+teachers = cursor.fetchall()
+for teacher in teachers:
+  print(teacher)
+#filtering using like operator 
+cursor. execute("SELECT first_name FROM teachers where first_name LIKE 'sam%'")
+tachers = cursor.fetchall()
+for teacher in teachers:
+  print(teacher)
+#fitlering using and 
+cursor.execute("SELECT * FROM teachers WHERE school = 'Myers Middle School' AND salary < 40000")
+teacher = cursor.fetchall()
+for teacher in teachers:
+  print(teacher)
+#filtering using OR 
+cursor.execute("SELECT * FROM teachers WHERE last_name= 'Cole' OR last_name ='Bush'")
+teacher = cursor.fetchall()
+for teacher in teachers:
+  print(teacher)
+#filter using AND and OR 
+cursor. execute("SELECT * FROM teachers WHERE school ='F.D. Roosevelt HS' AND (salary < 38000 or salary >40000)")
+teachers = cursor.fetchall()
+for teacher in teachers:
+  print(teacher)
+#filtering using like and ordering by hire date 
+cursor.execute("SELECT first_name, last_name, school, hire_date,salary FROM teachers WHERE school like '%Roos%' ORDER by hire_date DESC")
+teachers = cursor.fetchall()
+for teacher in teachers:
+  print(teacher)
+#The school district superintendent asks for a list of teachers in each school . Write a query that lists the schools in alphabetical order along with teach- ers ordered by last name A–Z .
+cursor.execute("SELECT first_name, last_name, school FROM teachers ORDER BY school DESC, first_name ASC")
+teachers = cursor.fetchall()
+for teacher in teachers:
+  print(teacher)
+#Write a query that finds the one teacher whose first name starts with the letter S and who earns more than $40,000 .
+cursor.execute("SELECT first_name, last_name, salary FROM teachers WHERE first_name LIKE 'S%' AND salary > 40000")
+teachers = cursor.fetchall()
+for teacher in teachers:
+  print(teacher)
+#Rank teachers hired since January 1, 2010, ordered by highest paid to lowest .
+cursor.execute("SELECT first_name, last_name, hire_date, salary from teachers WHERE hire_date > '2010-01-01' ORDER BY salary DESC")
+teachers = cursor.fetchall()
+for teacher in teachers:
+  print(teacher)
