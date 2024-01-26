@@ -1,0 +1,28 @@
+import sqlite3
+conn = sqlite3.connect('sample_db.sqlite')
+cursor = conn.cursor()
+
+cursor.execute('''
+CREATE TABLE teachers (
+    id INTEGER PRIMARY KEY,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    school TEXT NOT NULL,
+    hire_date date,
+    salary numeric
+)
+''')
+
+conn.commit()
+teachers_data = [ ("Janet", "Smith", "F.D. Roosevelt HS", "2011-10-30", 36200),
+("Lee", "Reynolds", "F.D. Roosevelt HS", "1993-05-22", 65000), ("Samuel", "Cole", "Myers Middle School", "2005-08-01", 43500), ("Samantha", "Bush", "Myers Middle School", "2011-10-30", 36200),("Betty", "Diaz", "Myers Middle School", "2005-08-30",43500), ("Kathleen", "Rouch", "F.D. Roosevelt HS", "2010-10-22", 38500)]
+cursor.executemany('''
+INSERT INTO teachers (first_name, last_name, school, hire_date, salary) VALUES (?, ?, ?, ?, ?)
+''', teachers_data)
+
+conn.commit()
+cursor.execute("SELECT * FROM teachers")
+teachers = cursor.fetchall()
+
+for teacher in teachers:
+    print(teacher)
